@@ -1,6 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { CreateOrderDto, UpdateOrderDto } from 'src/dtos/order.dtos';
-import { Order } from 'src/entities/order.entity';
+import { CreateOrderDto, UpdateOrderDto } from 'src/users/dtos/order.dtos';
+import { Order } from 'src/users/entities/order.entity';
+import { User } from '../entities/user.entity';
+import { Product } from 'src/products/entities/product.entity';
 
 @Injectable()
 export class OrdersService {
@@ -8,8 +10,24 @@ export class OrdersService {
   private orders: Order[] = [
     {
       id: 1,
-      fecha: '12/12/32',
-      total: 1235454,
+      date: '12/12/32',
+      user: {
+        id: 1,
+        name: 'name user',
+        username: 'username',
+        password: 'password',
+        email: 'email@email.com',
+      } as User,
+      products: [
+        {
+          id: 1,
+          name: 'product 1',
+          description: 'bla bla',
+          price: 123,
+          stock: 45,
+          image: '',
+        } as Product,
+      ],
     },
   ];
 

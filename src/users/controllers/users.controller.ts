@@ -8,8 +8,8 @@ import {
   Post,
   Put,
 } from '@nestjs/common';
-import { CreateUserDto, UpdateUserDto } from 'src/dtos/user.dtos';
-import { UsersService } from 'src/services/users/users.service';
+import { CreateUserDto, UpdateUserDto } from 'src/users/dtos/user.dtos';
+import { UsersService } from 'src/users/services/users.service';
 
 @Controller('user')
 export class UsersController {
@@ -23,6 +23,11 @@ export class UsersController {
   @Get(':id')
   getOne(@Param('id', ParseIntPipe) id: number) {
     return this.userService.getOne(id);
+  }
+
+  @Get(':id/orders')
+  getOrders(@Param('id', ParseIntPipe) id: number) {
+    return this.userService.getOrdersByUser(id);
   }
 
   @Post()
